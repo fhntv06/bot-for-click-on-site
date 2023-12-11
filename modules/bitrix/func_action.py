@@ -8,24 +8,15 @@ from func.func_log import writeInLog
 from variables.time import time_start_work, time_end_work, time_start_dinner_break, \
     time_end_dinner_break
 
-time_now = getHourInMinutes()
-
-# Начало рабочего дня / Завершение рабочего дня
-# Ожидаемое поведение:
-#   true - start work
-#   false - end work
-
-state_end_or_start_work = time_start_work <= time_now < time_end_work
-
+time_now = getHourInMinutes(11)
 
 # Проверка на time_start_work добавлена для того,
 # чтобы учитывать начало рабочего дня т.к. time_start_work < time_start_dinner_break
 
 state_break_or_continue_work = (
-    time_start_dinner_break <= time_now <= time_end_dinner_break
-    and time_now < time_end_work
+        time_start_dinner_break <= time_now <= time_end_dinner_break
+        and time_now < time_end_work
 )
-
 
 # В селекторы передаются полное название селектора
 # Пример, если у блока класс "ui-btn ui-btn-icon-pause tm-btn-pause",
@@ -56,13 +47,15 @@ def set_switch_states_work(driver):
 
 
 def set_break_or_continue_work(driver):
-    button_css_selector = button_css_selector_break_work_day \
-        if time_now <= time_start_dinner_break \
-        else button_css_selector_continue_work_day
+    state = time_now <= time_start_dinner_break
 
-    text_log = 'Попытка прервать рабочий день!' \
-        if time_now <= time_start_dinner_break \
-        else 'Попытка продолжить рабочий день!'
+    button_css_selector = (
+        button_css_selector_break_work_day if state else button_css_selector_continue_work_day
+    )
+
+    text_log = (
+        'Попытка прервать рабочий день!' if state else 'Попытка продолжить рабочий день!'
+    )
 
     writeInLog(text_log)
     findElementAndClick(driver, button_css_selector)  # перерыв или продолжить
@@ -71,13 +64,24 @@ def set_break_or_continue_work(driver):
 
 
 def set_toggle_work(driver):
-    button_css_selector = button_css_selector_start_work_day \
-        if state_end_or_start_work \
-        else button_css_selector_end_work_day
+    # Начало рабочего дня / Завершение рабочего дня
+    # Ожидаемое поведение:
+    #   true - start work
+    #   false - end work
+    #   else false - time not end work
 
-    text_log = 'Попытка начать рабочий день!' \
-        if state_end_or_start_work \
-        else 'Попытка начать закончить день!'
+    state_end_or_start_work = time_start_work <= time_now < time_start_dinner_break
+
+    button_css_selector = (
+        button_css_selector_start_work_day if state_end_or_start_work
+        else button_css_selector_end_work_day
+    )
+
+    text_log = 'Попытка начать рабочий день!' if state_end_or_start_work else 'Попытка закончить рабочий день!'
+
+    if time_now < time_end_work:
+        writeInLog('Время окончания рабочего дня еще не наступило!')
+        return
 
     writeInLog(text_log)
     findElementAndClick(driver, button_css_selector)

@@ -4,3 +4,6 @@ data.py
 /modules/passwork/data.py
 
 logs/log.txt
+
+*_cookies
+auth/*

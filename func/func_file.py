@@ -36,12 +36,12 @@ def deleteFileOrDir(path_to_file_or_dir):
 
 
 def fileWork():
-    separator = '============================== BOOT ==============================\n'
+    separator = '============================== BOOT =============================='
 
     # Открываем файл для записи
     with open(file_log, "a") as file:
         # Записываем лог
-        writeInLog(f"{ separator }Скрипт запущен в { getAllDateAndTime() }!")
+        writeInLog(f"{ separator }\n\nСкрипт запущен в { getAllDateAndTime() }!")
 
     createFileOrDir(file_log)
 

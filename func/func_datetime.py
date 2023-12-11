@@ -25,8 +25,8 @@ values = {
 
 
 def getHourInMinutes(hour='hour'):
-    forming_minutes = hour * 60 if type(hour) is int else values.get('hour') * 60
-    return forming_minutes + values.get('minute')
+    forming_minutes = hour if isinstance(hour, (int, float)) else values.get('hour')
+    return forming_minutes * 60 + values.get('minute')
 
 
 def getCtime():

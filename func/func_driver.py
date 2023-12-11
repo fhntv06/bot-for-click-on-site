@@ -15,9 +15,9 @@ def quitDriver(driver):
 
     driver.close()
 
-    writeInLog("Закрыл браузер!\n")
+    writeInLog("\nЗакрыл браузер!")
 
     driver.quit()
 
-    writeInLog(f'Завершил работу в { getAllDateAndTime() }\n{ separator }')
+    writeInLog(f'Завершил работу в { getAllDateAndTime() }\n\n{ separator }')
 

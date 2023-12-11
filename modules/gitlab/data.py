@@ -9,8 +9,8 @@ dir_auth = 'auth'
 gitlab_data = {
     'gitlab': {
         'name': 'gitlab',
-        'login': '',
-        'password': '',
+        'login': '******',
+        'password': '******',
         'link': 'https://gitlab.com/users/sign_in',
         'func_form': gitlab_form,
         'action': gitlab_action,

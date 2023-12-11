@@ -7,8 +7,8 @@ dir_auth = 'auth'
 bitrix_data = {
     'bitrix': {
         'name': 'bitrix',
-        'login': 'a.kuskov@make.st',
-        'password': '-89hjkpZ!;',
+        'login': '******',
+        'password': '******',
         'link': 'b24.make.st/company/personal/user/79/tasks/',
         'action': bitrix_action,
         'file_cookies': dir_auth + '/bitrix_auth_cookies',

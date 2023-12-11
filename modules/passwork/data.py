@@ -7,8 +7,8 @@ dir_auth = 'auth'
 passwork_data = {
     'passwork': {
         'name': 'passwork',
-        'login': 'a.kuskov@make.st',
-        'password': 'qr0E6lUyvu',
+        'login': '******',
+        'password': '******',
         'link': 'passwork.make.st/enter#/login',
         'action': passwork_action,
         'file_cookies': None,

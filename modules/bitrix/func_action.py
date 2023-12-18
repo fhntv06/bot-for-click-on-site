@@ -8,7 +8,7 @@ from func.func_log import writeInLog
 from variables.time import time_start_work, time_end_work, time_start_dinner_break, \
     time_end_dinner_break
 
-time_now = getHourInMinutes(11)
+time_now = getHourInMinutes()
 
 # Проверка на time_start_work добавлена для того,
 # чтобы учитывать начало рабочего дня т.к. time_start_work < time_start_dinner_break
@@ -64,6 +64,9 @@ def set_break_or_continue_work(driver):
 
 
 def set_toggle_work(driver):
+    if time_end_dinner_break < time_now < time_end_work:
+        writeInLog('Время окончания рабочего дня еще не наступило!')
+        return
     # Начало рабочего дня / Завершение рабочего дня
     # Ожидаемое поведение:
     #   true - start work
@@ -78,10 +81,6 @@ def set_toggle_work(driver):
     )
 
     text_log = 'Попытка начать рабочий день!' if state_end_or_start_work else 'Попытка закончить рабочий день!'
-
-    if time_now < time_end_work:
-        writeInLog('Время окончания рабочего дня еще не наступило!')
-        return
 
     writeInLog(text_log)
     findElementAndClick(driver, button_css_selector)

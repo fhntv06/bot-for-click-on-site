@@ -26,7 +26,7 @@ values = {
 
 def getHourInMinutes(hour='hour'):
     forming_minutes = hour if isinstance(hour, (int, float)) else values.get('hour')
-    return forming_minutes * 60 + values.get('minute')
+    return forming_minutes * 60
 
 
 def getCtime():

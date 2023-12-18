@@ -1,26 +1,24 @@
 import os
 from func.func_log import writeInLog
-from func.func_datetime import getAllDateAndTime
-from variables.common import file_log
 
 
-def checkExistFileOrDir(path_to_file_or_dir, type='f'):
+def checkExistFileOrDir(path_to_file_or_dir, is_dir=True):
     is_exist = os.path.exists(path_to_file_or_dir)
 
-    if is_exist:
-        writeInLog(f"{'Папка' if type == 'd' else 'Файл'}: { path_to_file_or_dir } уже существует!")
-    else:
-        writeInLog(f"{'Папка' if type == 'd' else 'Файл'}: { path_to_file_or_dir } не существует!")
+    writeInLog(f"{'Папка' if is_dir else 'Файл'}: "
+               f"{ path_to_file_or_dir } "
+               f"{'уже существует!' if is_exist else 'не существует!'}"
+    )
 
     return is_exist
 
 
-def createFileOrDir(path_to_file_or_dir, type='f'):
+def createFileOrDir(path_to_file_or_dir, is_dir=True):
     # Проверяем наличие файла
     if not checkExistFileOrDir(path_to_file_or_dir):
         # Создаем файл, если его нет
-        writeInLog(f"{'Папка' if type == 'd' else 'Файл'}: { path_to_file_or_dir } создан!")
         open(path_to_file_or_dir, "w").close()
+        writeInLog(f"{'Папка' if is_dir else 'Файл'}: { path_to_file_or_dir } создан!")
 
 
 def deleteFileOrDir(path_to_file_or_dir):
@@ -33,15 +31,4 @@ def deleteFileOrDir(path_to_file_or_dir):
         writeInLog(f"Нет разрешения на удаление файла { path_to_file_or_dir }!", True)
     except Exception as e:
         writeInLog(f"Произошла ошибка при удалении файла: { e }!", True)
-
-
-def fileWork():
-    separator = '============================== BOOT =============================='
-
-    # Открываем файл для записи
-    with open(file_log, "a") as file:
-        # Записываем лог
-        writeInLog(f"{ separator }\n\nСкрипт запущен в { getAllDateAndTime() }!")
-
-    createFileOrDir(file_log)
 

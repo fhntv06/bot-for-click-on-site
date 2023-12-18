@@ -1,41 +1,54 @@
 # -*- coding: utf-8 -*-
 import sys
-from func.func_log import writeInLog
-from func.func_datetime import getAllDateAndTime
-from func.func_file import fileWork
-from func.func_screenshot import makeScreenshot
-from func.func_driver import initDriver, quitDriver
-from func.func_site import openSite, getNameSite
-from variables.common import timeout
-from func.func_input_user import getUserMessageInput
-# from func.func_NSApplicationDelegate import NSApplicationDelegate
+import re
 
-# NSApplicationDelegate()
+from selenium.common import TimeoutException
+
+from func.func_input_user import getUserMessageInput
+from func.func_log import writeInLog
+from func.func_screenshot import makeScreenshot
+from func.func_driver import initDriver
+from func.func_site import openSite, timeoutException, formingSite
+from func.func_window import exitApp
+
+
 writeInLog('Запуск приложения: Screenshot on site')
 
-message = ''
-name_site = getNameSite('Введите сайт, с которого хотите получить скриншот:')
 driver = initDriver()
 
-# TODO: Добавить удержание пользователя, чтобы не закрывать программу, а давать ему снова и снова вводить название сайта
-# TODO: Добавить возможность пробление timeout, чтобы не закрывать программу
+# TODO: Пользователь должен иметь возможность вводить название сайтов не ограниченное количество раз
+#   - продление timeout, чтобы не закрывать программу
+
+name_site = ''
+
+
+def applicationSupportsSecureRestorableState(self):
+    return True
+
 
 def action():
+    global name_site
+
+    name_site = getUserMessageInput('Введите сайт, с которого хотите получить скриншот:')
+
+    exitApp(driver)
+
     try:
         openSite(driver, name_site)
-        makeScreenshot(driver, name_site)
 
-    except TimeoutException:
-        name_site = timeoutException(forming_site)
-        makeScreenshot(driver, name_site)
+    except TimeoutException:  # отработка только для двух раз ввода имени сайта
+        timeoutException(formingSite(name_site))
 
     except Exception as ex:
-        writeInLog(f"{ex}", True)
-        getNameSite('Введите другой сайт: ')
+        string = str(ex)
+        match = re.search(r'e=([^&]+)', string)
+        result = match.group(1)
 
-try:
-    action()
-except Exception as ex:
-    writeInLog(f"{ ex }", True)
-finally:
-    quitDriver(driver)
+        writeInLog(f"Сайт {formingSite(name_site)} не найден! Ошибка {result}", True)
+
+        action()
+
+    makeScreenshot(driver, name_site)
+
+
+action()

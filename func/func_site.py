@@ -1,23 +1,16 @@
 from variables.common import timeout
 from func.func_log import writeInLog
-from func.func_input_user import getUserMessageInput
 
 
 def formingSite(name_site):
     return f'https://{ name_site }'
 
 
-def getNameSite(message_for_user):
-    return getUserMessageInput(message_for_user)
-
-
 def timeoutException(link):
     # Обработка исключения в случае превышения таймаута
     writeInLog(
         f"\033[1;30m\u274C\033[0m Превышено время ожидания ({ timeout } секунд), "
-        f"возможно не корректно имя сайта. Сайт по адресу: { link }.", True)
-
-    return getUserMessageInput('Введите другое имя сайта:')
+        f"возможно не корректно имя сайта. Сайт по адресу: { link } не найден.", True)
 
 
 def openSite(driver, link):

@@ -1,5 +1,9 @@
 import tkinter as tk
+import keyboard
+
+
 from func.func_log import writeInLog
+from func.func_driver import quitDriver
 
 
 def getEntryUser(entry, message):
@@ -43,3 +47,18 @@ def createEntry(window):
     entry.pack(pady=10)
 
     return entry
+
+
+def exitApp(driver):
+    writeInLog('Для выхода нажмите Esc')
+
+    def on_key_event(e):
+        if e.event_type == keyboard.KEY_UP:
+            quitDriver(driver)
+
+    # Зарегистрируем функцию обратного вызова
+    keyboard.hook(on_key_event)
+
+    # Бесконечный цикл для ожидания событий
+    keyboard.wait('esc')  # Ждем, пока не будет нажата клавиша Esc
+

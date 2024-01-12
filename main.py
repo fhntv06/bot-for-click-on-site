@@ -4,11 +4,13 @@ import time
 
 from auth.data import data
 from func.func_driver import initDriver, quitDriver
+from func.func_log import writeInLog
 from func.func_site import openSite
 from func.func_form import formWork
 
 
 driver = initDriver()  # init driver
+writeInLog('Запуск приложения: Authentication')
 
 
 def action():

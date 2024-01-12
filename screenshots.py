@@ -12,9 +12,8 @@ from func.func_site import openSite, timeoutException, formingSite
 from func.func_window import exitApp
 
 
-writeInLog('Запуск приложения: Screenshot on site')
-
 driver = initDriver()
+writeInLog('Запуск приложения: Screenshot on site')
 
 # TODO: Пользователь должен иметь возможность вводить название сайтов не ограниченное количество раз
 #   - продление timeout, чтобы не закрывать программу

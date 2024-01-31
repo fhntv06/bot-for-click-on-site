@@ -85,3 +85,16 @@ Bot for click on button by site. Because always clicked on buttons is tired of i
         false - more hour ended dinner work but more hour end work
     </li>
 </ol>
+<hr>
+
+
+# Проблемы
+### 1) Блокировка экрана
+<blockquote>
+    <p>Актуальная проблема с блокировкой экрана ПК, из-за которой CRON не запускает на устройстве скрипт!</p>
+</blockquote>
+
+#### Решение
+<blockquote>
+    <p>Повлечет перенос кода на сервер и перепись кода под библиотеку не использующую браузер.</p>
+</blockquote>

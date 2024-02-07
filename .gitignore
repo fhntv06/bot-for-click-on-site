@@ -1,9 +1,7 @@
-data.py
-
 /modules/bitrix/data.py
 /modules/passwork/data.py
 
-logs/log.txt
+*.txt
 
 *_cookies
 auth/*

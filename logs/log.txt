@@ -1,0 +1,37 @@
+⇨ ============================== BOOT ==============================
+
+⇨ Скрипт запущен в 07/02/2024 14:03:02!
+
+⇨ Экземпляр драйвера Firefox создан!
+
+⇨ Запуск приложения: Authentication
+⇨ Попытка открыть сайт: https://b24.make.st/company/personal/user/79/tasks/
+⇨ ✓ Открыл сайт: https://b24.make.st/company/personal/user/79/tasks/
+
+⇨ Начало работы с формой!
+⇨ Ищу input[name="USER_LOGIN"] ...
+⇨ Ввел значение: a.kuskov@make.st в input[name="USER_LOGIN"]
+
+⇨ Ищу input[name="USER_PASSWORD"] ...
+⇨ Ввел значение: -89hjkpZ!; в input[name="USER_PASSWORD"]
+
+⇨ Ищу input[type="submit"] ...
+⇨ Нажал на кнопку input[type="submit"]
+
+⇨ Папка: auth/bitrix_auth_cookies уже существует!
+⇨ Файл auth/bitrix_auth_cookies успешно удален!
+⇨ Файл cookie создан и перезаписан!
+⇨ Форму прошел!
+
+⇨ Ищу [id*="timeman-"] ...
+⇨ Нажал на кнопку [id*="timeman-"]
+
+⇨ Попытка продолжить рабочий день!
+⇨ Ищу [class*="ui-btn-icon-start"] ...
+⇨ Нажал на кнопку [class*="ui-btn-icon-start"]
+
+⇨ Закрыл браузер!
+⇨ Завершил работу в 07/02/2024 14:03:24
+
+⇨ ============================== The End ==============================
+

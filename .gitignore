@@ -1,6 +1,4 @@
 /modules/bitrix/data.py
 /modules/passwork/data.py
 
-*.txt
-
 *_cookies

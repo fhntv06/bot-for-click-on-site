@@ -1,4 +1,4 @@
-14 9 * * 1-5 source /Users/dev/projects/edu/bot-for-click-on-site/auth.sh
-02 13 * * 1-5 source /Users/dev/projects/edu/bot-for-click-on-site/auth.sh
-03 14 * * 1-5 source /Users/dev/projects/edu/bot-for-click-on-site/auth.sh
-27 18 * * 1-5 source /Users/dev/projects/edu/bot-for-click-on-site/auth.sh
+14 9 * * 1-5 source [absolute path to repositories]/bot-for-click-on-site/auth.sh
+02 13 * * 1-5 source [absolute path to repositories]/bot-for-click-on-site/auth.sh
+03 14 * * 1-5 source [absolute path to repositories]/bot-for-click-on-site/auth.sh
+27 18 * * 1-5 source [absolute path to repositories]/bot-for-click-on-site/auth.sh
